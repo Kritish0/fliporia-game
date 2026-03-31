@@ -1,0 +1,482 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  background: #121212;
+  color: white;
+  margin: 0;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+body.default {
+  background: url('https://raw.githubusercontent.com/kritish123/image/main/WhatsApp%20Image%202025-03-28%20at%2018.07.13.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.spring {
+  background: url('https://raw.githubusercontent.com/bibash121/bgm/main/spring.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.summer {
+  background: url('https://raw.githubusercontent.com/bibash121/bgm/main/Sunny.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.autumn {
+  background: url('https://raw.githubusercontent.com/bibash121/bgm/main/Autmn.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.winter {
+  background: url('https://raw.githubusercontent.com/bibash121/bgm/main/Winter.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  body.default,
+  body.spring,
+  body.summer,
+  body.autumn,
+  body.winter {
+    background-attachment: scroll;
+  }
+}
+
+.login-page {
+  max-width: 90vw;
+  margin: 2rem auto;
+}
+
+.login-page h1 {
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-form {
+  margin-top: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-form input {
+  width: 100%;
+  max-width: 320px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid #5E5DF0;
+  background: #373735;
+  color: white;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-form button {
+  background: #5E5DF0;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.login-form button:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+.settings-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #f1c40f;
+  color: black;
+  padding: 1.2rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  z-index: 1000;
+}
+
+.selector-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.difficulty-selector {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.difficulty-selector label {
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.difficulty-selector select {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  background: #373735;
+  color: white;
+  border: 2px solid #5E5DF0;
+  width: 150px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#restart {
+  background: #5E5DF0;
+  border-radius: 999px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  border: 0;
+  margin: 0.5rem 0 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+#moves-counter,
+#timer,
+#score,
+#high-score {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+#timer,
+#score {
+  color: #f1c40f;
+}
+
+#high-score {
+  color: #5E5DF0;
+}
+
+.game-board {
+  display: grid;
+  gap: 14px;
+  justify-content: center;
+  margin: 1.5rem auto;
+  max-width: 95vw;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card.matched {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-front {
+  background-color: #b0a89f;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-back {
+  background: #d6d6a3;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: #373735;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  max-width: 80vw;
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0.5rem 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content button {
+  background: #5E5DF0;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content .theme-selector {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.modal-content .theme-selector label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content .theme-selector select {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  background: #373735;
+  color: white;
+  border: 2px solid #5E5DF0;
+  width: 150px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-content button.logout-btn {
+  background: #ff4444;
+}
+
+.lacquer-heading {
+  font-family: 'Lacquer', cursive;
+  font-size: 45px;
+  color: #7f807d;
+  font-weight: bold;
+}
+
+.tutorial-list {
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  padding-left: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .login-page {
+    max-width: 95vw;
+  }
+
+  .login-form label {
+    font-size: 1rem;
+  }
+
+  .login-form input {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .login-form button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .settings-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.8rem;
+    font-size: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .selector-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .difficulty-selector {
+    flex-direction: column;
+  }
+
+  .difficulty-selector label {
+    font-size: 20px;
+  }
+
+  .difficulty-selector select {
+    width: 100%;
+    max-width: 170px;
+    font-size: 0.9rem;
+  }
+
+  #moves-counter,
+  #timer,
+  #score,
+  #high-score {
+    font-size: 1rem;
+    text-align: left;
+    margin-left: 1rem;
+    display: block;
+    font-weight: bold;
+  }
+
+  #restart {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .game-board {
+    gap: 10px;
+  }
+
+  .card-front,
+  .card-back {
+    font-size: 1.4rem;
+  }
+
+  .modal-content {
+    max-width: 92vw;
+  }
+
+  .modal-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-content p {
+    font-size: 1rem;
+  }
+
+  .modal-content button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .modal-content .theme-selector select {
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.9rem;
+  }
+
+  .lacquer-heading {
+    font-size: 30px;
+  }
+}

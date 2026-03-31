@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fliporia</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lacquer&display=swap" rel="stylesheet">
+</head>
+<body class="default">
+  <div id="app">
+    <div v-if="!isLoggedIn" class="login-page">
+      <h1>Welcome to Fliporia</h1>
+      <div class="login-form">
+        <label for="username">Enter Username:</label>
+        <input
+          v-model="username"
+          id="username"
+          type="text"
+          placeholder="Your username"
+          @keyup.enter="login"
+        >
+        <button @click="login" :disabled="!username.trim()">Login</button>
+      </div>
+    </div>
+
+    <div v-if="isLoggedIn">
+      <h1 class="lacquer-heading">Fliporia - Welcome, {{ username }}!</h1>
+      <button @click="openSettings" class="settings-btn">🛠️</button>
+
+      <div class="selector-container">
+        <div class="difficulty-selector">
+          <label for="difficulty">Difficulty:</label>
+          <select v-model="difficulty" @change="setDifficulty">
+            <option value="easy">Easy (2x2)</option>
+            <option value="medium">Medium (3x4)</option>
+            <option value="hard">Hard (4x5)</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="moves-counter">Moves Left: {{ movesLeft }}</p>
+      <p id="timer">Time Left: {{ timeLeft }} s</p>
+      <p id="score">Score: {{ score }}</p>
+      <p id="high-score">High Score: {{ highScore }}</p>
+
+      <button @click="restartGame" id="restart">Restart Game</button>
+
+      <div class="game-board">
+        <div
+          v-for="(card, index) in cards"
+          :key="index"
+          class="card"
+          :class="{ flipped: card.flipped, matched: card.matched }"
+          @click="flipCard(card)"
+        >
+          <div class="card-inner">
+            <div class="card-front"></div>
+            <div class="card-back">{{ card.value }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="showModal" class="modal">
+        <div class="modal-content">
+          <h2>{{ modalMessage }}</h2>
+          <p>Score: {{ score }}</p>
+          <button @click="closeModal">Play Again</button>
+        </div>
+      </div>
+
+      <div v-if="showSettingsModal" class="modal">
+        <div class="modal-content">
+          <h2>Settings</h2>
+          <div class="theme-selector">
+            <label for="theme">Theme:</label>
+            <select v-model="theme" @change="setTheme">
+              <option value="default">Default</option>
+              <option value="spring">Spring</option>
+              <option value="summer">Summer</option>
+              <option value="autumn">Autumn</option>
+              <option value="winter">Winter</option>
+            </select>
+          </div>
+          <button @click="openTutorial">Tutorial</button>
+          <button @click="logout" class="logout-btn">Logout</button>
+          <button @click="closeSettings">Close</button>
+        </div>
+      </div>
+
+      <div v-if="showTutorialModal" class="modal">
+        <div class="modal-content">
+          <h2>How to Play</h2>
+          <ul class="tutorial-list">
+            <li>Flip two cards at a time to find matching pairs.</li>
+            <li>Match all cards before running out of moves or time to win.</li>
+            <li>Use the difficulty selector to choose Easy, Medium, or Hard.</li>
+            <li>Score points for matches and bonus points for time left.</li>
+          </ul>
+          <button @click="closeTutorial">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
